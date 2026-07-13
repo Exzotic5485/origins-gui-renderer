@@ -1,6 +1,6 @@
 {
     "name": "origins-image-generator",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
     "types": "./dist/types/index.d.ts",
@@ -22,7 +22,8 @@
         }
     },
     "scripts": {
-        "build": "bun ./scripts/build.ts"
+        "build": "bun ./scripts/build.ts",
+        "prepublish": "bun run build"
     },
     "files": [
         "dist"

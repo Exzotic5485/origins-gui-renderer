@@ -17,6 +17,7 @@
         "clsx": "^2.1.1",
         "jszip": "^3.10.1",
         "lucide-react": "^0.400.0",
+        "origins-image-generator": "^1.0.2",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-dropzone": "^14.2.3",

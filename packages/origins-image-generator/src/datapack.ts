@@ -44,14 +44,12 @@ export class Datapack {
 
         if (!origin)
             throw new Error(
-                `Datapack does not contain an origin with identifier '${identifier}'`
+                `Datapack does not contain an origin with identifier '${identifier}'`,
             );
 
-        const powers = this.powers
-            .entries()
-            .filter(([id]) => origin.powers?.includes(id))
-            .map(([, power]) => this.getCombinedPowerBadges(power))
-            .toArray();
+        const powers = (origin.powers ?? [])
+            .filter((id) => this.powers.has(id))
+            .map((id) => this.getCombinedPowerBadges(this.powers.get(id)!));
 
         return {
             origin,
@@ -62,7 +60,7 @@ export class Datapack {
     private getCombinedPowerBadges(power: Power): CombinedPowerBadges {
         const resolvedBadges = (power.badges ?? [])
             .map((badge) =>
-                typeof badge === "string" ? this.badges.get(badge) : badge
+                typeof badge === "string" ? this.badges.get(badge) : badge,
             )
             .filter((badge) => badge !== undefined);
 
@@ -87,7 +85,7 @@ export class Datapack {
 
     private isValidDatapack() {
         return Object.keys(this.zip.files).some((path) =>
-            path.includes("pack.mcmeta")
+            path.includes("pack.mcmeta"),
         );
     }
 
@@ -168,7 +166,7 @@ export class Datapack {
 
     private getMatchingFiles(regex: RegExp) {
         return Object.entries(this.zip.files).filter(
-            ([path, file]) => path.match(regex) && !file.dir
+            ([path, file]) => path.match(regex) && !file.dir,
         );
     }
 
